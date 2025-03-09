@@ -36,7 +36,7 @@ export default function Card({ data }) {
     <div className="border min-h-96 max-w-96 w-64 md:w-80 lg:w-auto p-3 rounded-xl flex flex-col">
       <Link href={`/product/${slugify(name)}`} className="flex-grow flex flex-col">
         <div className="w-full h-50 border rounded-lg flex justify-center items-center">
-          <Image className="h-auto w-auto" alt="IMAGE" src={imageUrl} height={300} width={300} priority={true} />
+          <Image className="h-44 w-50 object-cover" alt="IMAGE" src={imageUrl} height={300} width={300} priority={true} />
         </div>
         <div className="flex-grow">
           <p className="text-xl mt-5 line-clamp-3">
@@ -55,7 +55,7 @@ export default function Card({ data }) {
     <div className="border min-h-96 max-w-96 w-64 md:w-80 lg:w-auto p-3 rounded-xl flex flex-col">
       <Link href={`/product/${slugify(name)}`} className="flex-grow flex flex-col">
         <div className="w-full h-50 border rounded-lg flex justify-center items-center">
-          <Image className="h-auto w-auto grayscale opacity-50" alt="IMAGE" src={imageUrl} height={300} width={300} priority={true} />
+          <Image className="h-44 w-50 grayscale opacity-50 object-cover" alt="IMAGE" src={imageUrl} height={300} width={300} priority={true} />
         </div>
         <div className="flex-grow">
           <p className="text-xl mt-5 line-clamp-3">{name}</p>

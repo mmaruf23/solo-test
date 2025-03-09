@@ -64,7 +64,7 @@ export default function ProductPage() {
           <div className="rounded my-5 h-[400px]  flex items-center justify-center">
             {/* Ini produk image ceritanya */}
             {product.image &&
-              <Image src={`${process.env.NEXT_PUBLIC_API}/products/images/${product?.image}`} alt="Product Image" width={1000} height={1000} priority={true} />
+              <Image className="w-auto" src={`${process.env.NEXT_PUBLIC_API}/products/images/${product?.image}`} alt="Product Image" width={1000} height={1000} priority={true} />
             }
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function ProductPage() {
             <Button className={"bg-gray-300"} onClick={() => { setQty(qty + 1); }}>+</Button>
           </div>
           <div className="flex-grow flex justify-center items-center p-5">
-            {product.qty > 0 ? (
+            {product?.stock > 0 ? (
               <Button onClick={handleClick} className={"text-2xl w-full h-full bg-red-500 text-white"}>Add to Cart</Button>
             ) : (
               <Button className={"text-2xl w-full h-full bg-gray-500 text-white cursor-not-allowed"}>Out of Stock</Button>

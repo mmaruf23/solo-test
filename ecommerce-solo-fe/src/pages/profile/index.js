@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import { getUserDetails } from "@/services/user";
+import React, { useEffect, useState } from "react";
 
 const ProfilePage = () => {
-  const user = {
-    username: "makari",
-    name: "Makari Qontak",
-    email: "makari@example.com",
-    role: "User",
-    createdAt: "2024-01-15T10:00:00Z",
-  };
+
+  useEffect(() => {
+    getDetails();
+  }, []);
+
+  async function getDetails() {
+    const response = await getUserDetails();
+    console.log(response.data);
+    setUser(response.data);
+  }
+
 
   const orders = [
     {
@@ -43,6 +48,7 @@ const ProfilePage = () => {
 
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [filterStatus, setFilterStatus] = useState("All");
+  const [user, setUser] = useState({});
 
   const filteredOrders = filterStatus === "All" ? orders : orders.filter(order => order.status === filterStatus);
 
@@ -54,7 +60,7 @@ const ProfilePage = () => {
         <p><strong>Name:</strong> {user.name}</p>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Role:</strong> {user.role}</p>
-        <p><strong>Created At:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
+        <p><strong>Created At:</strong> {new Date(user.createdAt).toLocaleString()}</p>
       </div>
 
       <h3 className="text-xl font-semibold mb-2">Riwayat Order</h3>

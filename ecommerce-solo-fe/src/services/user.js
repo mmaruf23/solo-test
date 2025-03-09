@@ -43,3 +43,14 @@ export const updateRole = async (username, newRole) => {
     return { status: false, message: error.message };
   }
 };
+
+export const getUserDetails = async () => {
+  try {
+    const res = await axios.get(`${api}/users/me`, getAuthHeader());
+    return { status: true, data: res.data };
+
+  } catch (error) {
+    console.log(error.response);
+    return { status: false, message: error.message };
+  }
+};

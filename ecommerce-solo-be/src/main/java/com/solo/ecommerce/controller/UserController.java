@@ -6,8 +6,10 @@ import com.solo.ecommerce.dto.response.LoginResponse;
 import com.solo.ecommerce.dto.response.UserResponse;
 import com.solo.ecommerce.model.Role;
 import com.solo.ecommerce.model.User;
+import com.solo.ecommerce.security.CustomUserDetails;
 import com.solo.ecommerce.service.AuthService;
 import com.solo.ecommerce.service.UserService;
+import com.solo.ecommerce.util.ConvertToResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -65,5 +67,10 @@ public class UserController {
     public ResponseEntity<?> userByRole(@PathVariable Role role, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         Page<UserResponse> users = userService.findAllUser(role, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(users);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserResponse> getUser(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        return ResponseEntity.status(HttpStatus.OK).body(ConvertToResponse.userToResponse(userDetails.getUser()));
     }
 }

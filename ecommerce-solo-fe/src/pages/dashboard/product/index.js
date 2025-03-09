@@ -9,7 +9,7 @@ export default function DashboardProductPage() {
 
   useEffect(() => {
     if (!products.length) {
-      fetchProduct(0, 10);
+      fetchProduct(0, 1000);
     }
   }, []);
 
